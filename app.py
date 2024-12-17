@@ -97,8 +97,8 @@ def get_locations():
     if locations:
         return make_response(data, 200)
     else:
-        return make_response("Here we are.", 500)
-    
+        return make_response("Failed to get locations.", 500)
+
 
 @token_required
 @app.route("/blog/<int:id>", methods=["GET"])
