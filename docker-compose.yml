@@ -1,28 +1,23 @@
-version: "3.9"
-
+version: "3"
 services:
   flask_app:
     container_name: flask_api
     image: reidwarner/irs_flask_api
-    build: . 
     ports:
-      - "4000:4000"
+      - 5000:5000
     environment:
       - DB_URL=postgresql://postgres:postgres@irsdb:5432/postgres
-    depends_on:
-      - irsdb
   irsdb:
     container_name: irsdb
     image: postgres:alpine
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
-
 volumes:
   pgdata: {}
 
