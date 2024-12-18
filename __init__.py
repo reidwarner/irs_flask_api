@@ -13,7 +13,7 @@ from os import environ
 
 app = Flask(__name__)
 db = SQLAlchemy()
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@172.18.0.1:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@172.18.0.2:5432/postgres'
 db.init_app(app)
 CORS(app)
 
