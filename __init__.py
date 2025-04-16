@@ -15,7 +15,7 @@ app = Flask(__name__)
 db = SQLAlchemy()
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@irsdb:5432/postgres'
 db.init_app(app)
-CORS(app)
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://0.0.0.0"}})
 
 
 try:

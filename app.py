@@ -7,7 +7,8 @@ import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 
-CORS(app)
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://0.0.0.0"}})
+
 
 @app.route("/signup", methods=["POST"])
 def signup():
