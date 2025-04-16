@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_cors import CORS
+# from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 db = SQLAlchemy()
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@irsdb:5432/postgres'
 db.init_app(app)
-CORS(app)
+# CORS(app)
 
 
 try:

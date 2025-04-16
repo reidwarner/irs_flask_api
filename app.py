@@ -1,13 +1,13 @@
 from . import app, db
 from flask import request, make_response
-from flask_cors import CORS
+# from flask_cors import CORS
 from .models import Users, Locations, BlogPosts
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 
-CORS(app)
+# CORS(app)
 
 @app.route("/signup", methods=["POST"])
 def signup():
