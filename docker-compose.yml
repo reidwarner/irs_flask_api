@@ -1,24 +1,44 @@
-version: "3"
+version: "3.9"
 services:
-  flask_app:
-    container_name: flask_api
+  irs-react:
+    container_name: irs_front_end
+    image: reidwarner/irs_react
+    ports:
+      - 5173:5173
+  irs-flask_api:
+    container_name: irs_back_end
     image: reidwarner/irs_flask_api
     ports:
       - 5000:5000
+    networks:
+      - irsnet
     environment:
       - DB_URL=postgresql://postgres:postgres@irsdb:5432/postgres
-  irsdb:
+    depends_on:
+      irs-postgres:
+        condition: service_healthy
+  irs-postgres:
     container_name: irsdb
     image: postgres:alpine
     restart: always
     ports:
       - 5432:5432
+    networks:
+      - irsnet
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 volumes:
   pgdata: {}
+networks:
+  irsnet:
+    driver: bridge
 
