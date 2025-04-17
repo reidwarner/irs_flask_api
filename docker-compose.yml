@@ -4,7 +4,7 @@ services:
     container_name: irs_react
     image: reidwarner/irs_react:latest
     ports:
-      - 5173:5173
+      - 80:5173
   irs_flask_api:
     container_name: irs_flask_api
     image: reidwarner/irs_flask_api:latest
