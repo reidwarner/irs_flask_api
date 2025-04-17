@@ -1,12 +1,12 @@
 version: "3.9"
 services:
-  irs-react:
-    container_name: irs_front_end
+  irs_react:
+    container_name: irs_react
     image: reidwarner/irs_react
     ports:
       - 5173:5173
-  irs-flask_api:
-    container_name: irs_back_end
+  irs_flask_api:
+    container_name: irs_flask_api
     image: reidwarner/irs_flask_api
     ports:
       - 5000:5000
@@ -17,7 +17,7 @@ services:
     depends_on:
       irs-postgres:
         condition: service_healthy
-  irs-postgres:
+  irsdb:
     container_name: irsdb
     image: postgres:alpine
     restart: always
