@@ -1,4 +1,5 @@
 from . import app, db
+import location_data from dml
 from sqlalchemy import func
 
 likes = db.Table('likes',
@@ -66,3 +67,7 @@ class BlogPosts(db.Model):
 
 with app.app_context():
     db.create_all()
+    for coord in location_data:
+        location = Locations(latitude=coord[0], longitude=coord[1])
+        db.session.add(location)
+    db.session.commit()
