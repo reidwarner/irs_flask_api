@@ -15,7 +15,7 @@ services:
     environment:
       - DB_URL=postgresql://postgres:postgres@irsdb:5432/postgres
     depends_on:
-      irs-postgres:
+      irsdb:
         condition: service_healthy
   irsdb:
     container_name: irsdb
